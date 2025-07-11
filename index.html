@@ -3,93 +3,676 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOOP.AI</title>
-    <link rel="stylesheet" href="new-styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Loop AI - Automate Your Content Creation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #5B21B6; /* Deep Purple */
+            --secondary-color: #8B5CF6; /* Lighter Purple */
+            --accent-color: #6D28D9; /* Another shade of purple */
+            --text-color: #333;
+            --light-bg: #F9FAFB;
+            --white: #FFFFFF;
+            --gradient-start: #8B5CF6;
+            --gradient-end: #5B21B6;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient to right, var(--gradient-start), var(--gradient-end));
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--primary-color);
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+            margin-left: 20px;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            text-align: center;
+            background-color: var(--white);
+        }
+
+        .features h2 {
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .features h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-item {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-item i {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .feature-item p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* How it Works Section */
+        .how-it-works {
+            padding: 80px 0;
+            background-color: var(--light-bg);
+            text-align: center;
+        }
+
+        .how-it-works h2 {
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .how-it-works h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .step {
+            background-color: var(--white);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .step .step-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .step h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .step p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--gradient-end), var(--gradient-start));
+            color: var(--white);
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: var(--white);
+            position: relative;
+        }
+
+        .testimonials h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--white);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-item {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: left;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .testimonial-item:hover {
+            transform: translateY(-10px);
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .testimonial-item p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--white);
+        }
+
+        .testimonial-author span {
+            font-weight: 400;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            display: block;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            text-align: center;
+            background-color: var(--white);
+        }
+
+        .cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+
+        .cta p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        footer .footer-section {
+            flex: 1;
+            min-width: 200px;
+            text-align: left;
+        }
+
+        footer .footer-section.center {
+            text-align: center;
+        }
+
+        footer .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        footer .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        footer .footer-section ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer .footer-section ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        footer .social-icons a {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        footer .social-icons a:hover {
+            color: var(--secondary-color);
+        }
+
+        footer .copyright {
+            margin-top: 30px;
+            width: 100%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 10px 10px 10px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+
+            .features h2, .how-it-works h2, .testimonials h2, .cta h2 {
+                font-size: 2.2rem;
+            }
+
+            .feature-item, .step, .testimonial-item {
+                padding: 25px;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                width: 90%;
+                margin-bottom: 15px;
+            }
+
+            .btn-secondary {
+                margin-left: 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="mobile-container">
-        <header class="header">
-            <div class="logo">
-                <img src="logo.jpg" alt="LOOP.AI" class="logo-image">
-                <span class="logo-text">LOOP.AI</span>
-            </div>
-            <div class="nav-buttons">
-                <button class="nav-btn btn-signup">SIGN UP</button>
-                <button class="nav-btn btn-login">LOGIN</button>
-            </div>
-        </header>
-
-        <nav class="menu-bar">
-            <ul>
-                <li><a href="index.html">Home</a></li> <li><a href="about.html">About Us</a></li> <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-
-        <section class="hero">
-            <h1 class="hero-title">
-                AMPLIFY YOUR<br>
-                <span class="text-red">REACH</span>
-            </h1>
-        </section>
-
-        <div class="feature-buttons">
-            <button class="feature-btn">
-                <div class="feature-icon">Ai</div>
-                <div class="feature-text">SEARCH</div>
-            </button>
-            <button class="feature-btn">
-                <img src="reason-icon.jpg" alt="REASON" class="feature-image">
-                <div class="feature-text">REASON</div>
-            </button>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Loop AI</a>
+            <nav>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
+    </header>
 
-        <section class="content-section">
-            <div class="robot-container">
-                <div class="robot-illustration"></div>
-            </div>
-            <div class="content-text">
-                <h2 class="section-title">HOW WE GOT STARTED IN THIS BUSINESS</h2>
-                <p class="section-description">
-                    Getting started with loop.ai is simple and straightforward. Our AI-driven platform helps you amplify your digital presence and reach more customers effectively.
-                </p>
-                <p class="section-description">
-                    With cutting-edge technology, we empower businesses to optimize their online visibility, connect with their target audience, and drive meaningful growth through intelligent automation.
-                </p>
-                <p class="section-description">
-                    From rapid Web API development to AI-powered search capabilities, we enable you to build powerful applications that deliver real results for your business.
-                </p>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Automate Your Content, Amplify Your Reach.</h1>
+                <p>Loop AI is the ultimate AI-powered platform designed to streamline your content creation process, helping you generate high-quality content at scale, effortlessly.</p>
+                <a href="#pricing" class="btn">Start Free Trial</a>
+                <a href="#how-it-works" class="btn btn-secondary">Learn More</a>
             </div>
         </section>
 
-        <footer class="footer">
-            <h2 class="footer-title">
-                AUTOMATE YOUR<br>
-                <span class="text-red">WORK</span> FLOW
-            </h2>
-            <div class="social-links">
-                <a href="#" class="social-link">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                </a>
-                <a href="#" class="social-link">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.346-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.748-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
-                    </svg>
-                </a>
-                <a href="#" class="social-link">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.974.148-1.983.242-3.033.272-2.073.208-3.921-.454-5.385-1.242 2.219 2.333 5.483 3.993 9.278 4.116-3.832 2.92-9.456 4.791-15.222 4.791-1.004 0-1.982-.061-2.935-.171 5.925 3.84 12.917 6.084 20.45 6.084C21.758 24 24 22.023 24 19.387c0-.285-.006-.568-.018-.85a17.07 17.07 0 004.195-4.321C23.095 10.36 24 7.098 24 4.557z"/>
-                    </svg>
-                </a>
+        <section id="features" class="features">
+            <div class="container">
+                <h2>Key Features That Set Us Apart</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-magic"></i>
+                        <h3>AI-Powered Content Generation</h3>
+                        <p>Generate blog posts, social media updates, ad copy, and more with just a few clicks. Our advanced AI understands your needs and crafts compelling narratives.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-robot"></i>
+                        <h3>Intelligent Content Optimization</h3>
+                        <p>Our AI doesn't just create; it optimizes. Get suggestions for keywords, readability, and SEO best practices to ensure your content performs its best.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-brush"></i>
+                        <h3>Customizable Tone & Style</h3>
+                        <p>Maintain your brand voice effortlessly. Choose from various tones, styles, and formats to ensure every piece of content aligns with your brand identity.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Performance Analytics</h3>
+                        <p>Track the success of your AI-generated content. Gain insights into engagement, reach, and conversions to refine your strategy.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-users-cog"></i>
+                        <h3>Collaborative Workflows</h3>
+                        <p>Seamlessly integrate AI into your team's content production. Share, review, and edit content with your team for efficient collaboration.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-language"></i>
+                        <h3>Multilingual Content Support</h3>
+                        <p>Expand your global presence. Loop AI supports content generation in multiple languages, helping you reach diverse audiences worldwide.</p>
+                    </div>
+                </div>
             </div>
-            <div class="footer-links">
-                <a href="#" class="footer-link">PRIVACY POLICY</a>
-                <a href="#" class="footer-link">TERMS OF SERVICE</a>
+        </section>
+
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2>How Loop AI Automates Your Content</h2>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Define Your Content Needs</h3>
+                        <p>Simply tell Loop AI what kind of content you need, your target audience, and key messages.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>AI Generates Drafts</h3>
+                        <p>Our powerful AI instantly generates multiple high-quality content drafts based on your specifications.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Review & Refine</h3>
+                        <p>Review the generated content, make any necessary edits, and personalize it to perfection with our intuitive editor.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>Publish & Analyze</h3>
+                        <p>Publish your polished content directly to your platforms and track its performance to continuously improve.</p>
+                    </div>
+                </div>
             </div>
-        </footer>
-    </div>
+        </section>
+
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <h2>What Our Users Are Saying</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-item">
+                        <p>"Loop AI has revolutionized our content marketing. We're now producing ten times more content with the same team, and the quality is exceptional!"</p>
+                        <div class="testimonial-author">Sarah Chen<span>Marketing Director, InnovateX</span></div>
+                    </div>
+                    <div class="testimonial-item">
+                        <p>"As a small business owner, time is precious. Loop AI saves me hours every week, allowing me to focus on growing my business instead of wrestling with content."</p>
+                        <div class="testimonial-author">David Lee<span>Founder, Artisan Crafts Co.</span></div>
+                    </div>
+                    <div class="testimonial-item">
+                        <p>"The AI optimization features are a game-changer. Our SEO rankings have significantly improved since we started using Loop AI for our blog posts."</p>
+                        <div class="testimonial-author">Emily White<span>Content Strategist, Digital Growth</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta" class="cta">
+            <div class="container">
+                <h2>Ready to Supercharge Your Content Creation?</h2>
+                <p>Join thousands of businesses already leveraging Loop AI to create, optimize, and scale their content efforts. Stop wasting time, start seeing results.</p>
+                <a href="#pricing" class="btn">Get Started with Loop AI Today</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-section">
+                <h3>Loop AI</h3>
+                <p>Automating content creation for a smarter, faster, and more impactful digital presence.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section social-icons center">
+                <h3>Connect With Us</h3>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Loop AI. All rights reserved.
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

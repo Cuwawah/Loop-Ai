@@ -13,8 +13,9 @@
             --text-color: #333;
             --light-bg: #F9FAFB;
             --white: #FFFFFF;
-            --gradient-start: #8B5CF6;
-            --gradient-end: #5B21B6;
+            /* Updated gradient colors based on the image */
+            --gradient-start: #8B5CF6; /* Lighter Purple from original gradient */
+            --gradient-end: #E91E63; /* A vibrant pink/red to match the image */
         }
 
         body {
@@ -35,7 +36,7 @@
 
         /* Header */
         header {
-            background: linear-gradient to right, var(--gradient-start), var(--gradient-end));
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
             color: var(--white);
             padding: 1rem 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -78,7 +79,8 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            /* Updated background to match the image gradient */
+            background: linear-gradient(135deg, #8B5CF6, #E91E63); /* Purple to Vibrant Pink/Red */
             color: var(--white);
             padding: 80px 0;
             text-align: center;
@@ -483,16 +485,8 @@
                 font-size: 1rem;
             }
 
-            .features h2, .how-it-works h2, .testimonials h2, .cta h2 {
-                font-size: 2.2rem;
-            }
-
-            .feature-item, .step, .testimonial-item {
-                padding: 25px;
-            }
-
-            .footer-section {
-                text-align: center;
+            .btn-secondary {
+                margin-left: 0;
             }
         }
 
